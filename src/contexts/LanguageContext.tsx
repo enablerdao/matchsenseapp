@@ -1,12 +1,15 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
 
-// Define the structure of our translations
-type TranslationDictionary = {
-  [key: string]: string | TranslationDictionary;
-};
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-// Define translations for both languages
-const translations: Record<string, TranslationDictionary> = {
+type Language = 'en' | 'ja';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+}
+
+const translations = {
   en: {
     home: 'Home',
     services: 'Services',
@@ -20,38 +23,12 @@ const translations: Record<string, TranslationDictionary> = {
     loading: 'Loading...',
     search: 'Search',
     viewDetails: 'View Details',
-    
-    // Home page translations
-    home: {
-      title: 'Find Your Perfect Match',
-      subtitle: 'Our scientifically validated 200-question assessment helps you find ideal matches based on personality, values, and lifestyle compatibility.',
-      startAssessment: 'Start Assessment',
-      howItWorks: 'How It Works',
-      step1Title: 'Complete the Assessment',
-      step1Description: 'Answer our scientifically designed questions to create your detailed personality profile.',
-      step2Title: 'Get Your Results',
-      step2Description: 'Receive a comprehensive analysis of your personality traits and compatibility factors.',
-      step3Title: 'Find Your Matches',
-      step3Description: 'Connect with people who are truly compatible with your personality and values.',
-      whyChooseUs: 'Why Choose MatchSense',
-      feature1Title: 'Scientific Approach',
-      feature1Description: 'Our matching algorithm is based on decades of psychological research and validated personality models.',
-      feature2Title: '200-Question Assessment',
-      feature2Description: 'The optimal number of questions to ensure accuracy while maintaining completion rates.',
-      feature3Title: 'Holistic Compatibility',
-      feature3Description: 'We consider personality traits, core values, relationship styles, and lifestyle preferences.',
-      feature4Title: 'Privacy First',
-      feature4Description: 'Your data is secure and only used to provide you with the best matching experience.',
-      readyToStart: 'Ready to Find Your Perfect Match?',
-      readyToStartDescription: 'Take the first step toward meaningful connections based on true compatibility.'
-    },
-    
-    // Not Found page translations
-    notFound: {
-      title: 'Page Not Found',
-      description: 'The page you are looking for doesn\'t exist or has been moved.',
-      backToHome: 'Back to Home'
-    },
+    allCategories: 'All Categories',
+    stayTravel: 'Stay & Travel',
+    lifeCommunity: 'Life & Community',
+    workProductivity: 'Work & Productivity',
+    healthWellness: 'Health & Wellness',
+    investGrow: 'Investment & Growth',
     
     // Footer translations
     footer: {
@@ -74,7 +51,7 @@ const translations: Record<string, TranslationDictionary> = {
     
     // Questionnaire translations
     questionnaire: {
-      pageTitle: 'MatchSense - Personality Assessment',
+      pageTitle: 'PersonaMatch - Personality Assessment',
       pageDescription: 'Take our scientifically validated 200-question assessment to find your perfect matches based on personality, values, and lifestyle compatibility.',
       title: 'Discover Your True Compatibility',
       subtitle: 'Answer these questions to create your detailed personality profile and find your ideal matches.',
@@ -112,10 +89,11 @@ const translations: Record<string, TranslationDictionary> = {
         personalityType: 'Your Personality Type',
         keyTraits: 'Key Traits',
         compatibilityScores: 'Compatibility Scores',
-        viewService: 'View Matching Service',
+        viewService: 'View PersonaMatch Service',
         retake: 'Retake Assessment'
       }
-    }
+    },
+    // Add more translations as needed
   },
   ja: {
     home: 'ホーム',
@@ -130,38 +108,12 @@ const translations: Record<string, TranslationDictionary> = {
     loading: '読み込み中...',
     search: '検索',
     viewDetails: '詳細を見る',
-    
-    // Home page translations
-    home: {
-      title: '最適なマッチングを見つける',
-      subtitle: '科学的に検証された200問の診断テストで、性格、価値観、ライフスタイルの相性に基づいた理想的なマッチングを見つけましょう。',
-      startAssessment: '診断を始める',
-      howItWorks: '仕組み',
-      step1Title: '診断を完了する',
-      step1Description: '科学的に設計された質問に答えて、詳細な性格プロフィールを作成します。',
-      step2Title: '結果を受け取る',
-      step2Description: 'あなたの性格特性と相性要因の包括的な分析を受け取ります。',
-      step3Title: 'マッチングを見つける',
-      step3Description: 'あなたの性格や価値観と本当に相性の良い人々とつながりましょう。',
-      whyChooseUs: 'MatchSenseを選ぶ理由',
-      feature1Title: '科学的アプローチ',
-      feature1Description: '私たちのマッチングアルゴリズムは、数十年の心理学研究と検証された性格モデルに基づいています。',
-      feature2Title: '200問の診断テスト',
-      feature2Description: '完了率を維持しながら精度を確保するための最適な質問数です。',
-      feature3Title: '総合的な相性',
-      feature3Description: '性格特性、核となる価値観、関係性のスタイル、ライフスタイルの好みを考慮します。',
-      feature4Title: 'プライバシー重視',
-      feature4Description: 'あなたのデータは安全で、最高のマッチング体験を提供するためだけに使用されます。',
-      readyToStart: '最適なマッチングを見つける準備はできましたか？',
-      readyToStartDescription: '真の相性に基づいた意味のある繋がりへの第一歩を踏み出しましょう。'
-    },
-    
-    // Not Found page translations
-    notFound: {
-      title: 'ページが見つかりません',
-      description: 'お探しのページは存在しないか、移動されました。',
-      backToHome: 'ホームに戻る'
-    },
+    allCategories: 'すべて',
+    stayTravel: '滞在・旅行',
+    lifeCommunity: '生活・コミュニティ',
+    workProductivity: '仕事・生産性',
+    healthWellness: '健康・ウェルネス',
+    investGrow: '投資・成長',
     
     // Footer translations
     footer: {
@@ -184,7 +136,7 @@ const translations: Record<string, TranslationDictionary> = {
     
     // Questionnaire translations
     questionnaire: {
-      pageTitle: 'マッチセンス - 性格診断',
+      pageTitle: 'パーソナマッチ - 性格診断',
       pageDescription: '科学的に検証された200問の診断テストで、性格、価値観、ライフスタイルの相性に基づいた最適なマッチングを見つけましょう。',
       title: '本当の相性を発見しよう',
       subtitle: 'これらの質問に答えて、あなたの詳細な性格プロフィールを作成し、理想的なマッチングを見つけましょう。',
@@ -222,38 +174,39 @@ const translations: Record<string, TranslationDictionary> = {
         personalityType: 'あなたの性格タイプ',
         keyTraits: '主要な特性',
         compatibilityScores: '相性スコア',
-        viewService: 'マッチングサービスを見る',
+        viewService: 'パーソナマッチサービスを見る',
         retake: '診断を再受験する'
       }
-    }
+    },
+    // Add more translations as needed
   },
 };
 
-// Define the context type
-interface LanguageContextType {
-  language: string;
-  setLanguage: (language: string) => void;
-  t: (key: string) => string;
-}
-
-// Create the context
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Create the provider component
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Get the initial language from localStorage or default to 'en'
-  const [language, setLanguage] = useState<string>(() => {
-    const savedLanguage = localStorage.getItem('language');
-    return savedLanguage || 'en';
-  });
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  // Detect browser language and default to 'en' if not Japanese
+  const detectBrowserLanguage = (): Language => {
+    const browserLang = navigator.language || (navigator as any).userLanguage;
+    return browserLang && browserLang.startsWith('ja') ? 'ja' : 'en';
+  };
 
-  // Update localStorage when language changes
+  const [language, setLanguage] = useState<Language>('en');
+
   useEffect(() => {
-    localStorage.setItem('language', language);
+    // Set the initial language based on browser settings
+    const savedLanguage = localStorage.getItem('app-language') as Language;
+    const initialLanguage = savedLanguage || detectBrowserLanguage();
+    setLanguage(initialLanguage);
+  }, []);
+
+  useEffect(() => {
+    // Save language preference to localStorage
+    localStorage.setItem('app-language', language);
+    // Update html lang attribute for accessibility
     document.documentElement.lang = language;
   }, [language]);
 
-  // Translation function that supports nested keys
   const t = (key: string): string => {
     const keys = key.split('.');
     let value: any = translations[language];
@@ -276,8 +229,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   );
 };
 
-// Custom hook to use the language context
-export const useLanguage = () => {
+export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
