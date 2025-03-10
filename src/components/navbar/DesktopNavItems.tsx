@@ -36,7 +36,7 @@ const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({ navLinks }) => {
                 <motion.span
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-enabler-500"
+                  className="text-primary-500"
                 >
                   <Sparkles size={14} />
                 </motion.span>
@@ -61,7 +61,7 @@ const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({ navLinks }) => {
                 <motion.span
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-enabler-500"
+                  className="text-primary-500"
                 >
                   <Sparkles size={14} />
                 </motion.span>
@@ -70,7 +70,7 @@ const DesktopNavItems: React.FC<DesktopNavItemsProps> = ({ navLinks }) => {
             </a>
           )}
           <motion.div
-            className="absolute -bottom-1 left-0 w-full h-0.5 bg-enabler-500 rounded-full"
+            className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary-500 rounded-full"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: hoveredIndex === index ? 1 : 0 }}
             transition={{ duration: 0.2 }}
