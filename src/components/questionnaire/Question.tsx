@@ -121,7 +121,7 @@ export const Question: React.FC<QuestionProps> = ({ question, number }) => {
   return (
     <FormItem className="space-y-2">
       <FormLabel className="text-base font-medium flex">
-        <span className="mr-2 text-enabler-600 font-bold">{number}.</span>
+        <span className="mr-2 text-primary-600 font-bold">{number}.</span>
         {questionText}
         {question.required && <span className="text-red-500 ml-1">*</span>}
       </FormLabel>
