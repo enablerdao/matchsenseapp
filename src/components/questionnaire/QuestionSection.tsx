@@ -13,6 +13,8 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
   description, 
   questions 
 }) => {
+  console.log('QuestionSection rendered', { title, questionsCount: questions.length });
+  
   return (
     <div className="bg-white p-6 rounded-xl shadow-subtle">
       <h2 className="text-xl font-bold mb-2">{title}</h2>

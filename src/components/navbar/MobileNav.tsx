@@ -26,7 +26,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen }) => {
           className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
           onClick={() => setIsOpen(false)}
         >
-          {t('home')}
+          {t('homeLink')}
         </Link>
         <Link
           to="/questionnaire"
@@ -37,9 +37,19 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen }) => {
         </Link>
         <button
           onClick={toggleLanguage}
-          className="text-gray-700 hover:text-blue-600 block w-full text-left px-3 py-2 rounded-md text-base font-medium"
+          className="text-gray-700 hover:text-nike-blue block w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center"
         >
-          {language === 'en' ? '日本語' : 'English'}
+          {language === 'en' ? (
+            <>
+              <span className="mr-2">🇯🇵</span>
+              <span>日本語</span>
+            </>
+          ) : (
+            <>
+              <span className="mr-2">🇺🇸</span>
+              <span>English</span>
+            </>
+          )}
         </button>
       </div>
     </div>

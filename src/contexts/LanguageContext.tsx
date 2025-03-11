@@ -8,7 +8,7 @@ type TranslationDictionary = {
 // Define translations for both languages
 const translations: Record<string, TranslationDictionary> = {
   en: {
-    home: 'Home',
+    homeLink: 'Home',
     services: 'Services',
     blog: 'Blog',
     company: 'Company',
@@ -118,7 +118,7 @@ const translations: Record<string, TranslationDictionary> = {
     }
   },
   ja: {
-    home: 'ホーム',
+    homeLink: 'ホーム',
     services: 'サービス',
     blog: 'ブログ',
     company: '会社情報',
@@ -241,10 +241,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 // Create the provider component
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Get the initial language from localStorage or default to 'en'
+  // Get the initial language from localStorage or default to 'ja'
   const [language, setLanguage] = useState<string>(() => {
     const savedLanguage = localStorage.getItem('language');
-    return savedLanguage || 'en';
+    return savedLanguage || 'ja';
   });
 
   // Update localStorage when language changes

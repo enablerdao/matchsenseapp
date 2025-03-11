@@ -3,6 +3,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
 import { QuestionSection } from './QuestionSection';
 import { coreValuesQuestions } from './question-sets/core-values';
 import { personalityTraitsQuestions } from './question-sets/personality-traits';
@@ -18,8 +19,13 @@ type FormValues = {
 
 export const PersonalityQuestionnaire = () => {
   const { t, language } = useLanguage();
-  const methods = useForm<FormValues>();
+  const methods = useForm<FormValues>({
+    mode: 'onChange',
+    defaultValues: {}
+  });
   const [currentSection, setCurrentSection] = useState(0);
+  
+  console.log('PersonalityQuestionnaire rendered');
   
   const sections = [
     {
@@ -105,7 +111,7 @@ export const PersonalityQuestionnaire = () => {
         <Progress value={progressPercentage} className="h-2" />
       </div>
       
-      <FormProvider {...methods}>
+      <Form {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <QuestionSection 
             title={sections[currentSection].title}
@@ -134,7 +140,7 @@ export const PersonalityQuestionnaire = () => {
             )}
           </div>
         </form>
-      </FormProvider>
+      </Form>
     </div>
   );
 };

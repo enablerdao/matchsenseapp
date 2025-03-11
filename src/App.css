@@ -72,3 +72,156 @@ body {
     --ring: 224.3 76.3% 48%;
   }
 }
+
+/* Custom Nike-inspired radio buttons */
+.nike-radio {
+  @apply appearance-none w-5 h-5 rounded-full border-2 border-gray-300 checked:border-nike-blue checked:bg-white relative cursor-pointer transition-all duration-200;
+}
+
+.nike-radio:checked::after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-nike-blue rounded-full;
+}
+
+.nike-radio:hover {
+  @apply border-nike-blue;
+}
+
+.nike-radio:focus {
+  @apply outline-none ring-2 ring-offset-2 ring-nike-blue/30;
+}
+
+/* Custom Nike-inspired checkbox */
+.nike-checkbox {
+  @apply appearance-none w-5 h-5 rounded border-2 border-gray-300 checked:border-nike-blue checked:bg-nike-blue relative cursor-pointer transition-all duration-200;
+}
+
+.nike-checkbox:checked::after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-3 border-r-2 border-b-2 border-white rotate-45;
+}
+
+.nike-checkbox:hover {
+  @apply border-nike-blue;
+}
+
+.nike-checkbox:focus {
+  @apply outline-none ring-2 ring-offset-2 ring-nike-blue/30;
+}
+
+/* Custom Nike-inspired slider */
+.nike-slider {
+  @apply appearance-none w-full h-2 bg-gray-200 rounded-full outline-none;
+}
+
+.nike-slider::-webkit-slider-thumb {
+  @apply appearance-none w-6 h-6 rounded-full bg-nike-blue cursor-pointer;
+}
+
+.nike-slider::-moz-range-thumb {
+  @apply appearance-none w-6 h-6 rounded-full bg-nike-blue cursor-pointer border-0;
+}
+
+/* Custom Nike-inspired buttons */
+.nike-btn {
+  @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.nike-btn-primary {
+  @apply nike-btn bg-nike-black text-white hover:shadow-lg focus:ring-nike-black/30;
+}
+
+.nike-btn-secondary {
+  @apply nike-btn bg-white text-nike-black border border-gray-200 hover:border-nike-black hover:shadow-lg focus:ring-nike-black/30;
+}
+
+.nike-btn-accent {
+  @apply nike-btn bg-nike-volt text-nike-black hover:shadow-neon focus:ring-nike-volt/30;
+}
+
+/* Custom card styles */
+.nike-card {
+  @apply bg-white rounded-2xl shadow-elevated overflow-hidden transition-all duration-300 hover:shadow-colored;
+}
+
+.nike-card-gradient {
+  @apply bg-gradient-to-br from-gradient-blue-start to-gradient-blue-end text-white rounded-2xl shadow-elevated overflow-hidden;
+}
+
+/* Custom progress bar */
+.nike-progress-container {
+  @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.nike-progress-bar {
+  @apply h-full bg-gradient-to-r from-nike-blue to-nike-volt rounded-full transition-all duration-500;
+}
+
+/* Custom animations */
+.animate-swoosh {
+  animation: swoosh 0.5s ease-out;
+}
+
+@keyframes swoosh {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) skewX(0);
+    opacity: 1;
+  }
+}
+
+/* Custom typography */
+.nike-heading {
+  @apply font-bold tracking-tight;
+}
+
+.nike-subheading {
+  @apply font-medium text-gray-600;
+}
+
+/* Custom section styles */
+.nike-section {
+  @apply py-12 px-4 sm:px-6 lg:px-8;
+}
+
+.nike-container {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Custom form styles */
+.nike-form-group {
+  @apply mb-6;
+}
+
+.nike-label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.nike-input {
+  @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-nike-blue focus:ring focus:ring-nike-blue/20 focus:ring-opacity-50;
+}
+
+/* Custom question card */
+.question-card {
+  @apply bg-white rounded-xl shadow-elevated p-6 transition-all duration-300 hover:shadow-lg border border-transparent hover:border-gray-200;
+}
+
+.question-card-active {
+  @apply border-l-4 border-l-nike-blue;
+}
+
+/* Custom rating scale */
+.rating-scale {
+  @apply flex justify-between mt-4;
+}
+
+.rating-item {
+  @apply flex flex-col items-center;
+}
+
+.rating-label {
+  @apply mt-2 text-xs text-gray-500;
+}
