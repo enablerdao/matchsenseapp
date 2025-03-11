@@ -119,16 +119,18 @@ export const Question: React.FC<QuestionProps> = ({ question, number }) => {
   };
   
   return (
-    <FormItem className="space-y-2">
-      <FormLabel className="text-base font-medium flex">
-        <span className="mr-2 text-enabler-600 font-bold">{number}.</span>
-        {questionText}
-        {question.required && <span className="text-red-500 ml-1">*</span>}
-      </FormLabel>
-      <FormControl>{renderQuestionInput()}</FormControl>
-      {errors[question.id] && (
-        <FormMessage>{errors[question.id]?.message}</FormMessage>
-      )}
-    </FormItem>
+    <div className="question-card">
+      <FormItem className="space-y-3">
+        <FormLabel className="text-lg font-medium flex items-start">
+          <span className="mr-2 text-professional-primary font-bold">{number}.</span>
+          <span className="text-professional-text-primary">{questionText}</span>
+          {question.required && <span className="text-professional-error ml-1">*</span>}
+        </FormLabel>
+        <FormControl>{renderQuestionInput()}</FormControl>
+        {errors[question.id] && (
+          <p className="text-professional-error text-sm mt-1">{errors[question.id]?.message as string}</p>
+        )}
+      </FormItem>
+    </div>
   );
 };
