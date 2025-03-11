@@ -14,9 +14,13 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
   questions 
 }) => {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-subtle">
-      <h2 className="text-xl font-bold mb-2">{title}</h2>
-      <p className="text-gray-600 mb-6">{description}</p>
+    <div>
+      <div className="mb-6">
+        <div className="inline-block px-3 py-1 bg-professional-primary-light/10 rounded-full text-sm font-medium text-professional-primary mb-2">
+          {title}
+        </div>
+        <p className="text-professional-text-secondary">{description}</p>
+      </div>
       
       <div className="space-y-8">
         {questions.map((question, index) => (

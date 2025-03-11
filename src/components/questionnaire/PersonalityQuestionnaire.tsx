@@ -89,49 +89,73 @@ export const PersonalityQuestionnaire = () => {
   };
   
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-2xl md:text-3xl font-bold mb-2 text-center">
+    <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
+      <h1 className="heading-1 mb-2 text-center">
         {t('questionnaire.title')}
       </h1>
-      <p className="text-gray-600 mb-6 text-center">
+      <p className="subtitle mb-8 text-center max-w-2xl mx-auto">
         {t('questionnaire.subtitle')}
       </p>
       
-      <div className="mb-8">
+      <div className="mb-10">
         <div className="flex justify-between text-sm mb-2">
-          <span>{t('questionnaire.progress')}: {completedQuestions}/{totalQuestions}</span>
-          <span>{Math.round(progressPercentage)}%</span>
+          <span className="font-medium text-professional-text-secondary">{t('questionnaire.progress')}: {completedQuestions}/{totalQuestions}</span>
+          <span className="font-medium text-professional-primary">{Math.round(progressPercentage)}%</span>
         </div>
-        <Progress value={progressPercentage} className="h-2" />
+        <div className="progress-container">
+          <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
+        </div>
       </div>
       
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <QuestionSection 
-            title={sections[currentSection].title}
-            description={sections[currentSection].description}
-            questions={sections[currentSection].questions}
-          />
-          
-          <div className="flex justify-between mt-8">
-            <Button 
-              type="button" 
-              variant="outline" 
-              onClick={handlePrevious}
-              disabled={currentSection === 0}
-            >
-              {t('questionnaire.previous')}
-            </Button>
+          <div className="card animate-slide-up">
+            <QuestionSection 
+              title={sections[currentSection].title}
+              description={sections[currentSection].description}
+              questions={sections[currentSection].questions}
+            />
             
-            {currentSection < sections.length - 1 ? (
-              <Button type="button" onClick={handleNext}>
-                {t('questionnaire.next')}
-              </Button>
-            ) : (
-              <Button type="submit">
-                {t('questionnaire.submit')}
-              </Button>
-            )}
+            <div className="flex justify-between mt-10">
+              <button 
+                type="button" 
+                className="btn-secondary"
+                onClick={handlePrevious}
+                disabled={currentSection === 0}
+              >
+                {t('questionnaire.previous')}
+              </button>
+              
+              {currentSection < sections.length - 1 ? (
+                <button type="button" className="btn-primary" onClick={handleNext}>
+                  {t('questionnaire.next')}
+                </button>
+              ) : (
+                <button type="submit" className="btn-primary">
+                  {t('questionnaire.submit')}
+                </button>
+              )}
+            </div>
+          </div>
+          
+          {/* Section navigation */}
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {sections.map((section, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => index <= currentSection && setCurrentSection(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentSection 
+                    ? 'bg-professional-primary scale-125' 
+                    : index < currentSection 
+                      ? 'bg-professional-primary-light' 
+                      : 'bg-professional-neutral-light'
+                } ${index > currentSection ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                disabled={index > currentSection}
+                aria-label={`Go to section ${index + 1}`}
+              />
+            ))}
           </div>
         </form>
       </FormProvider>
