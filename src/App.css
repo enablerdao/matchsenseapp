@@ -2,17 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 30, 41, 59;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 241, 245, 249;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 30, 41, 59;
   }
 }
 
@@ -20,15 +22,15 @@ body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
-      transparent,
+      rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    );
+  font-family: 'Inter', sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -70,5 +72,154 @@ body {
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+  }
+}
+
+/* Professional UI Components */
+@layer components {
+  /* Professional buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-professional-primary text-white font-medium rounded-md shadow-sm hover:bg-professional-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-professional-primary transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-white text-professional-text-primary font-medium rounded-md border border-professional-neutral-light shadow-sm hover:bg-professional-neutral-lighter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-professional-primary transition-colors duration-200;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-transparent text-professional-primary font-medium rounded-md border border-professional-primary shadow-sm hover:bg-professional-primary-light/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-professional-primary transition-colors duration-200;
+  }
+  
+  .btn-text {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-transparent text-professional-primary font-medium hover:bg-professional-primary-light/10 focus:outline-none focus:ring-2 focus:ring-professional-primary/20 rounded-md transition-colors duration-200;
+  }
+  
+  /* Professional cards */
+  .card {
+    @apply bg-white rounded-lg shadow-card p-6 transition-shadow duration-200 hover:shadow-elevated;
+  }
+  
+  .card-bordered {
+    @apply bg-white rounded-lg shadow-sm border border-professional-neutral-light p-6;
+  }
+  
+  /* Professional form elements */
+  .form-input {
+    @apply block w-full rounded-md border-professional-neutral-light shadow-sm focus:border-professional-primary focus:ring focus:ring-professional-primary/20 focus:ring-opacity-50;
+  }
+  
+  .form-select {
+    @apply block w-full rounded-md border-professional-neutral-light shadow-sm focus:border-professional-primary focus:ring focus:ring-professional-primary/20 focus:ring-opacity-50;
+  }
+  
+  .form-checkbox {
+    @apply rounded border-professional-neutral-dark text-professional-primary focus:ring-professional-primary/20;
+  }
+  
+  .form-radio {
+    @apply border-professional-neutral-dark text-professional-primary focus:ring-professional-primary/20;
+  }
+  
+  /* Professional typography */
+  .heading-1 {
+    @apply text-3xl font-bold text-professional-text-primary tracking-tight;
+  }
+  
+  .heading-2 {
+    @apply text-2xl font-semibold text-professional-text-primary tracking-tight;
+  }
+  
+  .heading-3 {
+    @apply text-xl font-semibold text-professional-text-primary;
+  }
+  
+  .subtitle {
+    @apply text-lg text-professional-text-secondary;
+  }
+  
+  .body-large {
+    @apply text-base text-professional-text-primary;
+  }
+  
+  .body {
+    @apply text-sm text-professional-text-primary;
+  }
+  
+  .caption {
+    @apply text-xs text-professional-text-secondary;
+  }
+  
+  /* Professional badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply badge bg-professional-primary-light/10 text-professional-primary;
+  }
+  
+  .badge-success {
+    @apply badge bg-professional-success-light/10 text-professional-success;
+  }
+  
+  .badge-warning {
+    @apply badge bg-professional-warning-light/10 text-professional-warning;
+  }
+  
+  .badge-error {
+    @apply badge bg-professional-error-light/10 text-professional-error;
+  }
+  
+  .badge-info {
+    @apply badge bg-professional-info-light/10 text-professional-info;
+  }
+  
+  /* Professional progress indicators */
+  .progress-container {
+    @apply w-full h-2 bg-professional-neutral-light rounded-full overflow-hidden;
+  }
+  
+  .progress-bar {
+    @apply h-full bg-professional-primary rounded-full transition-all duration-300;
+  }
+  
+  /* Professional question card */
+  .question-card {
+    @apply card mb-6 border-l-4 border-l-transparent;
+  }
+  
+  .question-card-active {
+    @apply border-l-professional-primary;
+  }
+  
+  /* Professional rating scale */
+  .rating-scale {
+    @apply flex justify-between mt-6;
+  }
+  
+  .rating-item {
+    @apply flex flex-col items-center;
+  }
+  
+  .rating-label {
+    @apply mt-2 text-xs text-professional-text-secondary;
+  }
+  
+  /* Professional radio button */
+  .professional-radio {
+    @apply appearance-none w-5 h-5 rounded-full border-2 border-professional-neutral-dark checked:border-professional-primary checked:bg-white relative cursor-pointer transition-all duration-200;
+  }
+  
+  .professional-radio:checked::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-professional-primary rounded-full;
+  }
+  
+  .professional-radio:hover {
+    @apply border-professional-primary;
+  }
+  
+  .professional-radio:focus {
+    @apply outline-none ring-2 ring-offset-2 ring-professional-primary/30;
   }
 }

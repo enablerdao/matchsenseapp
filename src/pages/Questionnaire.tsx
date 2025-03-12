@@ -16,7 +16,7 @@ const Questionnaire = () => {
         path="/questionnaire"
       />
       <Navbar />
-      <main className="flex-grow bg-gray-50 py-8">
+      <main className="flex-grow bg-professional-background py-12">
         <PersonalityQuestionnaire />
       </main>
       <Footer />

@@ -23,23 +23,33 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, setIsOpen }) => {
       <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-inner">
         <Link
           to="/"
-          className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+          className="text-professional-text-primary hover:text-professional-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
           onClick={() => setIsOpen(false)}
         >
           {t('home')}
         </Link>
         <Link
           to="/questionnaire"
-          className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+          className="text-professional-text-primary hover:text-professional-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
           onClick={() => setIsOpen(false)}
         >
           {t('questionnaire.pageTitle')}
         </Link>
         <button
           onClick={toggleLanguage}
-          className="text-gray-700 hover:text-blue-600 block w-full text-left px-3 py-2 rounded-md text-base font-medium"
+          className="text-professional-text-primary hover:text-professional-primary block w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center"
         >
-          {language === 'en' ? '日本語' : 'English'}
+          {language === 'en' ? (
+            <>
+              <span className="mr-2">🇯🇵</span>
+              <span>日本語</span>
+            </>
+          ) : (
+            <>
+              <span className="mr-2">🇺🇸</span>
+              <span>English</span>
+            </>
+          )}
         </button>
       </div>
     </div>

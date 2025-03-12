@@ -18,14 +18,14 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
-              <img src="/logo.svg" alt="MatchSense" className="h-8" />
+              <img src="/logo.svg" alt="MatchSense" className="h-10" />
             </Link>
             <div className="hidden md:block ml-10">
               <div className="flex items-center space-x-4">
-                <Link to="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/" className="text-professional-text-primary hover:text-professional-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                   {t('home')}
                 </Link>
-                <Link to="/questionnaire" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/questionnaire" className="text-professional-text-primary hover:text-professional-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                   {t('questionnaire.pageTitle')}
                 </Link>
               </div>
@@ -35,9 +35,19 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={toggleLanguage}
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-professional-text-primary hover:text-professional-primary px-3 py-2 rounded-md text-sm font-medium flex items-center"
               >
-                {language === 'en' ? '日本語' : 'English'}
+                {language === 'en' ? (
+                  <>
+                    <span className="mr-1">🇯🇵</span>
+                    <span>日本語</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="mr-1">🇺🇸</span>
+                    <span>English</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
